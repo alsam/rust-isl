@@ -26,6 +26,7 @@ struct Ctx {
 #[test]
 fn it_works() {
     // see https://github.com/rust-lang/rust/issues/20204
+    // rust je_arena_dalloc_bin_locked
     //let ctx = getCtx();
     unsafe {
         let ctx = isl_ctx_alloc();
