@@ -1,0 +1,10 @@
+[package]
+name = "isl"
+version = "0.1.0"
+authors = ["Alexander Samoilov <alexander.samoilov@gmail.com>"]
+license = "MIT"
+description = "FFI bindings to isl"
+
+[dependencies]
+libc = "0.1"
+
