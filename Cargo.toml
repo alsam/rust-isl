@@ -6,5 +6,5 @@ license = "MIT"
 description = "FFI bindings to isl"
 
 [dependencies]
-libc = "0.1"
+#libc = "0.1"
 
