@@ -13,7 +13,11 @@ extern {
 // safe wrapper
 //fn getCtx() -> Box<Ctx>  {
 fn getCtx() -> *mut i64  {
-    unsafe { isl_ctx_alloc() }
+    unsafe {
+        let ptr = isl_ctx_alloc();
+        println!("ptr: {:?} {:?}", ptr, *ptr);
+        ptr
+    }
 }
 
 //isl_ctx *ctx = isl_ctx_alloc();
@@ -31,6 +35,11 @@ fn it_works() {
     // used to have with boxed values: rust je_arena_dalloc_bin_locked
     let ctx = getCtx();
     unsafe {
-      assert!(*ctx != 0);
+      assert!((ctx as i64) != 0);
     }
+}
+
+fn main()
+{
+    let mut ptr = getCtx();
 }
