@@ -6,11 +6,13 @@
 
 #[link(name = "isl")]
 extern {
-    fn isl_ctx_alloc() -> Box<Ctx>;
+    //fn isl_ctx_alloc() -> Box<Ctx>;
+    fn isl_ctx_alloc() -> *mut i64;
 }
 
 // safe wrapper
-fn getCtx() -> Box<Ctx>  {
+//fn getCtx() -> Box<Ctx>  {
+fn getCtx() -> *mut i64  {
     unsafe { isl_ctx_alloc() }
 }
 
@@ -26,9 +28,9 @@ struct Ctx {
 #[test]
 fn it_works() {
     // see https://github.com/rust-lang/rust/issues/20204
-    // rust je_arena_dalloc_bin_locked
-    //let ctx = getCtx();
+    // used to have with boxed values: rust je_arena_dalloc_bin_locked
+    let ctx = getCtx();
     unsafe {
-        let ctx = isl_ctx_alloc();
+      assert!(*ctx != 0);
     }
 }
