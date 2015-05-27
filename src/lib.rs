@@ -20,8 +20,6 @@ fn getCtx() -> *mut i64  {
     }
 }
 
-//isl_ctx *ctx = isl_ctx_alloc();
-
 #[repr(C)]
 #[derive(Clone, Copy)]
 // TODO align with isl/include/isl/isl_ctx_private.h
@@ -34,9 +32,8 @@ fn it_works() {
     // see https://github.com/rust-lang/rust/issues/20204
     // used to have with boxed values: rust je_arena_dalloc_bin_locked
     let ctx = getCtx();
-    unsafe {
-      assert!((ctx as i64) != 0);
-    }
+    // see here for std::ptr https://doc.rust-lang.org/std/ptr/
+    assert!(!ctx.is_null())
 }
 
 fn main()
